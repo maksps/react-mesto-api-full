@@ -10,10 +10,6 @@ const {
   createUser, login,
 } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
-// const allowedCors = [
-//   'https://maksps.nomoredomains.rocks',
-//   'localhost:3001',
-// ];
 
 const urlRegEx = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
 
@@ -31,15 +27,14 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(express.json());
 app.use(requestLogger);
-// app.use(function (req, res, next) {
-//   const { origin } = req.headers;
-//   if (allowedCors.includes(origin)) {
-//     res.header('Access-Control-Allow-Origin', origin);
-//     console.log ('да')
-//   }
-//   next();
-// });
+
 app.use(cors());
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),

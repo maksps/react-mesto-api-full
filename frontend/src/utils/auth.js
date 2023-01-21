@@ -34,7 +34,6 @@ class Auth {
         return fetch(`${this._url}users/me`, {
             method: "GET",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
-            //body: JSON.stringify(token)
         }).then((res) => {
             return this._getResponseData(res);
         });
@@ -43,8 +42,8 @@ class Auth {
 }
 
 const auth = new Auth(
-    // 'api.maksps.nomoredomains.rocks/',
-     'http://localhost:3000/',
+    'http://api.maksps.nomoredomains.rocks/',
+    //  'http://localhost:3000/',
 );
 
 export default auth;

@@ -128,7 +128,7 @@ const updateUserAvatar = async (req, res, next) => {
     if (user === null) {
       throw new NotFoundError('Пользователь не найден');
     }
-    return res.status(200).json( user );
+    return res.status(200).json(user);
   } catch (e) {
     if (e.name === 'ValidationError') {
       return next(new BadRequest('Переданы некорректные данные при обновлении аватара'));

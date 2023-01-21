@@ -1,0 +1,13 @@
+.popup__btn-confirm {
+
+    margin-top: -10px;
+  } 
+
+
+
+  @media screen and (max-width: 560px) {
+    .popup__btn-confirm {
+      margin-top: -30px;
+    }
+  
+  }

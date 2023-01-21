@@ -1,0 +1,17 @@
+.auth__login-link {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding-top: 15px;
+    min-height: 17px;
+}
+
+
+.auth__login-link:hover {
+    opacity: 0.8;
+}

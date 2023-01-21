@@ -1,0 +1,16 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+@media screen and (max-width: 560px) {
+    .auth__title {
+        width: 260px;
+        
+    }
+}

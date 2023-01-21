@@ -1,0 +1,38 @@
+.profile {
+  display: grid;
+  padding-top: 40px;
+  grid-template-areas:
+    "avatar info add"
+    "avatar text add";
+  grid-template-columns: max-content minmax(100px, 1fr) max-content;
+  grid-template-rows: max-content max-content;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    grid-template-areas:
+      "avatar info"
+      "avatar text"
+      "add add";
+    grid-template-columns: max-content minmax(100px, 1fr);
+    grid-template-rows: max-content max-content max-content;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    grid-template-areas:
+      "avatar"
+      "info"
+      "text"
+      "add";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
+    justify-items: center;
+  }
+
+
+}

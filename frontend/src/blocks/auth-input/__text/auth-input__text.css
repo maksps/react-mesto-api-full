@@ -1,0 +1,32 @@
+.auth-input__text {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCCCCC;
+    margin-top: 30px;
+    box-sizing: border-box;
+    width: 358px;
+    height: 27px;
+    border: 0px;
+    border-bottom: 2px solid #CCCCCC;
+    background: transparent;
+    padding: 0px;
+}
+
+.auth-input__text:focus-visible {
+    outline: none;
+}
+
+@media screen and (max-width: 560px) {
+    .auth-input__text {
+        width: 260px;
+        margin-top: 20px;
+    }
+}
+
+.auth-input__text:-webkit-autofill,
+.auth-input__text:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}

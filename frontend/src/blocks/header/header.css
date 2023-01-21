@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  flex: auto;
+  margin-left: calc(200/1280*100%);
+  margin-right: calc(200/1280*100%);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+@media screen and (max-width:1025px) {
+  .header {
+    margin-left: calc(100/1280*100%);
+    margin-right: calc(100/1280*100%);
+  }
+}
+
+@media screen and (max-width:600px) {
+  .header {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .header {
+    margin: 0;
+  }
+}

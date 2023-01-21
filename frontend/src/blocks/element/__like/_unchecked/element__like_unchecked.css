@@ -1,0 +1,4 @@
+.element__like_unchecked {
+  display: block;
+  background-image: url('../../../../images/like-element.svg');
+}

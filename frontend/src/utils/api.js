@@ -101,7 +101,7 @@ class Api {
 
 const api = new Api(
     {
-        url:'http://api.maksps.nomoredomains.rocks/',
+        url:'https://api.maksps.nomoredomains.rocks/',
         // url: 'http://localhost:3000/',
 
         // url: 'https://mesto.nomoreparties.co/v1/cohort-50/',

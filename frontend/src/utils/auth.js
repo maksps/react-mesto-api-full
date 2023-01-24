@@ -46,7 +46,7 @@ class Auth {
 }
 
 const auth = new Auth(
-    'http://api.maksps.nomoredomains.rocks/',
+    'https://api.maksps.nomoredomains.rocks/',
     //  'http://localhost:3000/',
 
 );

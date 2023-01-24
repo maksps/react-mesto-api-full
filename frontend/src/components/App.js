@@ -32,13 +32,14 @@ function App() {
   const [userData, setUserData] = useState({});
   const [tooltipContent, setTooltipContent] = useState({});
   const history = useHistory();
-  // localStorage.removeItem('jwt');
 
+  // localStorage.removeItem('jwt');
   //основной функционал приложения 
 
   useEffect(() => {
     if (loggedIn) {
       api.getAllCards()
+
         .then((data) => {
           setCards(data);
         })
@@ -58,6 +59,7 @@ function App() {
         })
     }
   }, [loggedIn]);
+
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser.userId);  // проверяем, есть ли уже лайк на этой карточке
@@ -140,10 +142,20 @@ function App() {
     if (localStorage.getItem('jwt')) {
       const token = localStorage.getItem('jwt');
       auth.checkToken(token).then((res) => {
+        if (res.message === 'Необходимо авторизоваться') {
+          setTooltipContent({ text: res.message, logo: logoError });
+          setInfoTooltipPopupOpen(true);
+          return
+        }
+
         setLoggedIn(true);
         setUserData({ email: res.email, id: res._id });
         history.push("/");
-      }).catch((err) => console.log(err))
+      }).catch((err) => {
+        setLoggedIn(false);
+        setTooltipContent({ text: 'Что-то пошло не так! Попробуйте ещё раз.', logo: logoError });
+        setInfoTooltipPopupOpen(true);
+      })
     }
     return
   };
@@ -161,25 +173,25 @@ function App() {
         setUserData({ email: email })
       } else {
         setLoggedIn(false);
-        setTooltipContent({ text: 'Что-то пошло не так! Попробуйте ещё раз.', logo: logoError });
+        setTooltipContent({ text: res.message, logo: logoError });
         setInfoTooltipPopupOpen(true);
       }
 
-    }).catch((err) => console.log(err))
+    }).catch((err) => {
+      console.log(err);
+      setTooltipContent({ text: 'Что-то пошло не так! Попробуйте ещё раз.', logo: logoError });
+      setInfoTooltipPopupOpen(true);
+    })
   };
 
   function registrate({ password, email }) {
     auth.signUp({ password, email }).then((res) => {
-
-      if (res.token) {
-        setUserData({ id: res._id, email: res.email });
-        localStorage.setItem('jwt', res.token);
-        setLoggedIn(true);
-        history.push("/");
-        setTooltipContent({ text: 'Вы успешно зарегистрировались!', logo: logoRegistration });
-        setInfoTooltipPopupOpen(true);
-      }
-
+      setUserData({ id: res._id, email: res.email });
+      // setLoggedIn(true);
+      // history.push("/");
+      history.push("/sign-in");
+      setTooltipContent({ text: 'Вы успешно зарегистрировались!', logo: logoRegistration });
+      setInfoTooltipPopupOpen(true);
     }).catch((err) => {
       console.log(err.message);
       setLoggedIn(false);
@@ -198,7 +210,8 @@ function App() {
 
   function handleExit() {
     localStorage.removeItem('jwt');
-    history.push("/sign-in")
+    history.push("/sign-in");
+    setLoggedIn(false);
   }
 
   return (

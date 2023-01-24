@@ -78,15 +78,14 @@ const createUser = async (req, res, next) => {
       email,
       password: hash,
     });
-    const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
 
     return res.status(201).json({
+
       name,
       about,
       avatar,
       email,
       _id: user._id,
-      token,
     });
   } catch (e) {
     if (e.code === 11000) {

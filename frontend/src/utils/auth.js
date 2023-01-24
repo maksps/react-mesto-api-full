@@ -5,8 +5,12 @@ class Auth {
 
     _getResponseData(res) {
         if (!res.ok) {
+            // console.log(res.json());
             Promise.reject(`Ошибка: ${res.status}`);
+            return res.json()
         }
+        
+
         return res.json()
     }
 
@@ -44,6 +48,7 @@ class Auth {
 const auth = new Auth(
     'http://api.maksps.nomoredomains.rocks/',
     //  'http://localhost:3000/',
+
 );
 
 export default auth;

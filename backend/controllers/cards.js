@@ -36,7 +36,7 @@ const createCard = async (req, res, next) => {
   try {
     const { name, link } = req.body;
     const card = await Card.create({ name, link, owner: req.user._id });
-    const result = await Card.findById(card._id).populate('owner');
+    const result = await Card.findById(card._id).populate(['owner', 'likes']);
     return res.status(201).json(result);
   } catch (e) {
     if (e.name === 'ValidationError') {
@@ -56,7 +56,7 @@ const addLike = async (req, res, next) => {
     if (card === null) {
       throw new NotFoundError('Такой карточки не существует');
     }
-    return res.status(201).json(card); // [{ likes: card.likes }]
+    return res.status(201).json(card);
   } catch (e) {
     if (e.name === 'CastError') {
       return next(new BadRequest('передан некорректный запрос'));
